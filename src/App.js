@@ -37,11 +37,11 @@ class App extends Component {
           }
         />
         <TabBar.Item
-          key="message"
+          key="activity"
           icon={<div style={{
             width: '0.44rem',
             height: '0.44rem',
-            background: 'url(svg/message.svg) center center /  0.42rem 0.42rem no-repeat'
+            background: 'url(svg/notification.svg) center center /  0.42rem 0.42rem no-repeat'
           }}
           />
           }

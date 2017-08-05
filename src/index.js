@@ -5,3 +5,5 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
+
+//TODO Use FastClick, ref #576 https://github.com/ant-design/ant-design-mobile/issues/576

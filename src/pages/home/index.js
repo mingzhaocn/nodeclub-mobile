@@ -1,3 +1,5 @@
 import view from './views/Home'
+import reducer from './reducer';
+import action from './action';
 
-export { view }
+export { action, reducer, view }

@@ -28,7 +28,8 @@ class App extends Component {
 
   render() {
     return (
-      <TabBar>
+      //TODO：列表需要知道 TabBar 的位置，因为要实现滑动加载，有没有更好的实践方式？
+      <TabBar id="App">
         <TabBar.Item
           key="home"
           selected={this.props.selectedTab === 'home'}
@@ -36,7 +37,8 @@ class App extends Component {
           icon={this.createIcon('svg/home.svg')}
           selectedIcon={this.createIcon('svg/home_blue.svg')}
         >
-          <Home></Home>
+          <Home
+          />
         </TabBar.Item>
         <TabBar.Item
           key="collection"

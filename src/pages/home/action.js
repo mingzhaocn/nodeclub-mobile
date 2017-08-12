@@ -1,4 +1,4 @@
-import { SET_TOPICS } from './actionTypes';
+import { SET_TOPICS, SET_TOPICS_PARAM } from './actionTypes';
 import { getTopics } from '../../api'
 
 export const setTopics = (topics) => ({
@@ -6,11 +6,17 @@ export const setTopics = (topics) => ({
   topics
 })
 
+export const setTopicsParam = (param) => ({
+  type: SET_TOPICS_PARAM,
+  topicsParam: { ...param }
+})
+
 export const loadTopics = (param) => {
   return (dispatch) => {
-    return getTopics().then(data => {
+    return getTopics(param).then(data => {
       if (data.success) {
         dispatch(setTopics(data.data))
+        dispatch(setTopicsParam(param))
       } else {
         //TODO
       }

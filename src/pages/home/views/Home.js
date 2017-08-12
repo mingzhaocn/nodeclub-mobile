@@ -2,19 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { loadTopics } from '../action'
 import { connect } from 'react-redux'
+import ListView from './ListView'
 
 class Home extends Component {
 
-  onClick = () => {
-    this.props.loadTopics({})
+  loadMoreData = () => {
+    this.props.loadTopics({ page: this.props.topicsParam.page + 1, limit: 10 })
   }
 
   render() {
     return (
-      <div>
-        <button onClick={this.onClick}>loadTopics</button>
-        {JSON.stringify(this.props.topics)}
-      </div>
+      <div style={{ marginBottom: 0 }}>
+        <ListView
+          data={this.props.topics}
+          loadMoreData={this.loadMoreData}
+        />
+        <div style={{ height: '20rem' }} />
+      </div >
     );
   }
 }
@@ -26,13 +30,14 @@ Home.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    topics: state.home.topics
+    topics: state.home.topics,
+    topicsParam: state.home.topicsParam
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    loadTopics: param => {
+    loadTopics: (param) => {
       dispatch(loadTopics(param));
     }
   }

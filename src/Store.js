@@ -2,12 +2,12 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import appRreducer from './reducer'
-import { reducer as homeRreducer } from './pages/home'
+import appReducer from './reducer'
+import { reducer as homeReducer } from './pages/home'
 
 const reducer = combineReducers({
-  app: appRreducer,
-  home: homeRreducer,
+  app: appReducer,
+  home: homeReducer,
 })
 
 const middleware = []

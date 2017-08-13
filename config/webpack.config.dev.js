@@ -1,7 +1,6 @@
 'use strict';
 
 const autoprefixer = require('autoprefixer');
-const pxtorem = require('postcss-pxtorem');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -89,7 +88,7 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-
+      
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -119,7 +118,7 @@ module.exports = {
           {
             options: {
               formatter: eslintFormatter,
-
+              
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -145,8 +144,6 @@ module.exports = {
           /\.gif$/,
           /\.jpe?g$/,
           /\.png$/,
-          /\.less$/,
-          /\.svg$/,
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -170,9 +167,7 @@ module.exports = {
         include: paths.appSrc,
         loader: require.resolve('babel-loader'),
         options: {
-          plugins: [
-            ['import', {libraryName: 'antd-mobile', style: true}],
-          ],
+          
           // This is a feature of `babel-loader` for webpack (not Babel itself).
           // It enables caching results in ./node_modules/.cache/babel-loader/
           // directory for faster rebuilds.
@@ -218,43 +213,6 @@ module.exports = {
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
-      {
-        test: /\.(svg)$/i,
-        loader: 'svg-sprite-loader',
-        include: [
-          require.resolve('antd-mobile').replace(/warn\.js$/, ''),  // 1. svg files of antd-mobile
-          path.resolve(__dirname, '../public/svg'),  // folder of svg files in your project
-        ]
-      },
-        // Parse less files and modify variables
-      {
-        test: /\.less$/,
-        use: [
-          require.resolve('style-loader'),
-          require.resolve('css-loader'),
-          {
-            loader: require.resolve('postcss-loader'),
-            options: {
-              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
-              plugins: () => [
-                pxtorem({
-                  rootValue: 100,
-                  propWhiteList: [],
-                }),
-                autoprefixer({
-                  browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
-                }),
-              ],
-            },
-          },
-          {
-            loader: require.resolve('less-loader'),
-            options: {
-              modifyVars: { "@primary-color": "#1DA57A" },
-            },
-          },
-        ],
-      },
     ],
   },
   plugins: [
